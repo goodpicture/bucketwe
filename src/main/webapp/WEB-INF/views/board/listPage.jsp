@@ -8,6 +8,10 @@
 margin-top: 50px;
 }
 </style>
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <!-- Page Content -->
 <div class="container">
 	<!-- Page Header -->
@@ -147,9 +151,3 @@ margin-top: 50px;
 </div>
 <%@ include file="../include/footer.jsp" %>
 <!-- /.container -->
-
-<!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
