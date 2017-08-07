@@ -9,15 +9,25 @@ pageEncoding="UTF-8"%>
 <!-- <title>Insert title here</title> -->
 </head>
 <style>
+body{
+margin:0;
+height: 100%;
+}
 #footer_div{
 width: 100%;
-height: 200px;
+min-height:100%;
 border: 1px solid black;
 clear: both;
-margin-top: 50px;
-position: fixed;
-bottom: 0;
+padding-bottom:1.9em;
 text-align: center;
+margin-top: 50px;
+height:100px;
+line-height: 100px;
+vertical-align: middle;
+background-color:transparent;
+}
+#footer_div p{
+color:#9d9d9d;
 }
 </style>
 <body>

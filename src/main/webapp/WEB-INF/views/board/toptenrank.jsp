@@ -66,18 +66,15 @@ text-align: center;
 			<th>조회수</th>
 			<th class="test1">주제</th>
 			<th class="test2">제목</th>
-			<th>순위</th>
-			
+			<th>순위</th>			
 		</tr>
 		<c:forEach items="${toplist }" var="item" varStatus="status">
-		<tr>
-		
+		<tr>		
 			<td>${item.bno }</td>
 			<td>${item.bcnt }</td>
 			<td class="test1">${item.category }</td>
 			<td style="font-weight: bold;">${item.title }</td>
-			<td>${status.count }</td>
-			
+			<td>${status.count }</td>			
 		</tr>
 		</c:forEach>
 	</table>
@@ -88,24 +85,21 @@ text-align: center;
 			<th>댓글수</th>
 			<th class="test1">주제</th>
 			<th class="test2">제목</th>
-			<th>순위</th>
-			
+			<th>순위</th>			
 		</tr>
 		<c:forEach items="${replylist }" var="item2" varStatus="status">
-		<tr>
-		
+		<tr>		
 			<td>${item2.bno }</td>
 			<td>${item2.replyCnt }</td>
 			<td class="test1">${item2.category }</td>
 			<td style="font-weight: bold;">${item2.title }</td>
-			<td>${status.count }</td>
-			
-			
+			<td>${status.count }</td>			
 		</tr>
 		</c:forEach>
 	</table>
 	</div>
 </div>	
+<div style="height:100px;clear:both;"></div>
 <%@ include file="../include/footer.jsp" %>	
 </body>
 </html>
