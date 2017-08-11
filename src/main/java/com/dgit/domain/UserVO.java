@@ -5,7 +5,16 @@ public class UserVO {
 	private String pw;
 	private String name;
 	private String email;
+	private String newpw;
 	
+	
+	
+	public String getNewpw() {
+		return newpw;
+	}
+	public void setNewpw(String newpw) {
+		this.newpw = newpw;
+	}
 	public String getId() {
 		return id;
 	}

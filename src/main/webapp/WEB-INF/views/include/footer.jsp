@@ -2,40 +2,36 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <title>Insert title here</title> -->
-</head>
 <style>
+*{
+margin: 0;
+padding: 0;
+}
 body{
 margin:0;
-height: 100%;
+padding:0;
 }
 #footer_div{
 width: 100%;
-min-height:100%;
+/* min-height:100%; */ 
 border: 1px solid black;
 clear: both;
-padding-bottom:1.9em;
 text-align: center;
-margin-top: 50px;
-height:100px;
-line-height: 100px;
-vertical-align: middle;
-background-color:transparent;
-}
-#footer_div p{
+background-color: rgba(0,0,0,.9);
 color:#9d9d9d;
+padding:15px;
+position: fixed;
+bottom: 0;
+}
+#footer_div{
+
 }
 </style>
-<body>
-    <footer>
-        <div id="footer_div">
-            <p>Copyright &copy; BucketWe Website 2017</p>
-        </div>
-        <!-- /.container -->
-    </footer>
-</body>
-</html>
+	<section>
+    <div id="footer_div">
+            Copyright &copy; BucketWe Website 2017
+    </div>
+    </section>

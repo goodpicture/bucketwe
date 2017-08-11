@@ -9,10 +9,13 @@
 	<select id="selectUser" resultType="UserVO">
 		select * from bucuser where id=#{id}
 	</select>
+	<select id="allUser" resultType="UserVO">
+		select id from bucuser where id=#{id}
+	</select>
 	<select id="login" resultType="UserVO">
 		select * from bucuser where id = #{id} and pw = #{pw}
 	</select>
 	<update id="updateUser" parameterType="UserVO">
-	UPDATE bucketwe.bucuser SET pw=#{pw}, name=#{name}, email=#{email} WHERE id=#{id};
+	UPDATE bucuser SET pw=#{newpw}, name=#{name}, email=#{email} WHERE id=#{id};
 	</update>
 </mapper>

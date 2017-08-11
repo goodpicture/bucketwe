@@ -21,6 +21,7 @@ body {
   background-color: #eee;
   background-image: url("${pageContext.request.contextPath}/resources/image/glenn-carstens-peters-190592.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .form-signin {
@@ -59,8 +60,9 @@ body {
 }
 
 </style>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 </head>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function(){		
 		document.f1.onsubmit = function(){
 			var reg1 = /^\w{4,16}$/;
@@ -75,13 +77,39 @@ body {
 				}
 		}
 	})
+</script> -->
+<script>
+$(function() {
+	var result = false;
+	var url = new URL(window.location.href);		
+	result = url.searchParams.get("isExist");
+	if (result == "false") {
+		alert("아이디 또는 비밀번호를 확인하세요.");
+	}
+});
+</script>
+<script>
+$(function() {
+	$("#id").focus();
+	
+	$("form[name='f1']").submit(function() {
+		if (checkInputEmpty($("input[name]")) == false){			
+			return false;						
+		}
+	});
+	
+	
+	$("#reset").click(function() {
+		location.href = "${pageContext.request.contextPath}/";
+	});
+});
 </script>
 <body>
   <div class="container">
       <form class="form-signin" action="loginPost" method="post" name="f1">
         <h2 class="form-signin-heading">Sign in</h2>
         <label for="id" class="sr-only">id</label>
-        <input type="text" name="id" class="form-control" placeholder="Id" required autofocus>
+        <input type="text" name="id" class="form-control" placeholder="Id" id="id" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="pw" class="form-control" placeholder="Password" required>
         <br>

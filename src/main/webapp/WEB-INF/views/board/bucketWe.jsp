@@ -7,19 +7,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BucketWe</title>
-<!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- Bootstrap Core CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/3-col-portfolio.css" rel="stylesheet">
 <style>
 #main_div{
-margin-top:80px;
 width: 100%;
 text-align:center;
+height:60%;
 }
 </style>
 </head>

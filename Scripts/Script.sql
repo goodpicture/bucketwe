@@ -180,3 +180,10 @@ SET reply_cnt=0
 WHERE bno=199;
 
 UPDATE bucketwe.bucuser SET pw='admin', name='블랙마운틴', email='aaa@gmail.com' WHERE id='admin';
+
+
+select id from bucuser;
+
+UPDATE bucketwe.bucuser
+SET pw='admin', name='관리자', email='aaa@gmail.com'
+WHERE id='admin';

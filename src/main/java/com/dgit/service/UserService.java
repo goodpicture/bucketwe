@@ -7,4 +7,5 @@ public interface UserService {
 	public UserVO selectUser(String id) throws Exception;
 	public UserVO login(String id, String pw) throws Exception;
 	public void updateUser(UserVO vo) throws Exception;
+	public UserVO allUser(String id) throws Exception;
 }

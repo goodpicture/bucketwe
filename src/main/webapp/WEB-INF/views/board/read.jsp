@@ -5,11 +5,11 @@
 <%@ page session="true" %>
 <%@include file="../include/header.jsp" %>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Read</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> -->
-<<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -18,26 +18,29 @@
 	float: left;
 }
 #imgFiles img{
-	float: left;
-	min-width: 100%;
+ 	min-width: 100%;
 	max-width: 100%;
 	min-height: 100%;
-	max-height: 100%;
+	max-height: 100%; 
+}
+.content{
+width: 85%;
+margin:0 auto;
 }	
 </style>
 	<section class="content">
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-xs-12">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">등록 Page</h3>
+					<h3 class="box-title" style="clear:both;text-align:center;">Read Page</h3>
 				</div>
 				<!-- BOX-header  -->
 			</div>
 			<div class="box-body">
 				<table class="table table-boarded">
 					<tr>
-						<th>BucketList</th>
+						<th>버킷리스트</th>
 						<th>주제</th>
 						<th>시작날짜</th>
 						<th>종료날짜</th>
@@ -52,13 +55,14 @@
 						
 					</tr>
 				</table>
-				<textarea rows="10" cols="200">${board.content }</textarea>
+				<textarea style="width:100%;height:100px;">${board.content }</textarea>
 				<!-- BOX-BODY  -->
-				<div  id="imgFiles" style="width:1400px;text-align:center;">
-				<c:forEach var="item" items="${board.files }">
-						<div id="displayImg" style="width:700px;height:500px;padding:5px;border:1px solid black;"><img src="displayFile?filename=${item }"></div>
+				<div id="imgFiles" style="width:100%;text-align:center;padding-left:17%;float:left;">
+				<c:forEach var="item" items="${board.files }">  
+						<div id="displayImg" style="width:80%;height:50%;box-shadow:0 0 10px grey inset, 0 0 10px black;margin-bottom:10px;">
+						<img src="displayFile?filename=${item }" style="width:50%;height:50%"></div>
 						</c:forEach>
-						</div><p></p>
+						</div>
 				<div class="box-footer" style="clear:both;">
 					<c:if test="${login == board.id }">
 					<button class="btn btn-warning" id="modifyBtn">수정하기</button>
@@ -113,16 +117,16 @@
 					<input type="text" placeholder="Your Message" id="newReplyText" class="form-control" required="required">
 				</div>
 				<div class="box-footer">
-					<button class="btn" id="btnAdd" style="font-weight:bold;">댓글 추가</button>
+					<button class="btn" id="btnAdd" style="background-color:#CC6600; margin-top:5px;color:white;text-shadow:2px black;">댓글 추가</button>
 				</div>
 			</div><!-- add reply -->
 			<ul class="pagination"></ul>
 			<ul class="timelin" style="list-style:none;">
 				<li class="time-label" id="repliesList">
-					<span class="bg-green btn" id="btnList" style="background-color:#E0E0E0;font-size:15px;font-weight:bold;">댓글 리스트(<span class="replycntClass">${board.replyCnt}</span>)</span>
+					<span class="bg-green btn" id="btnList" style="background-color:#CC6600/* #E0E0E0 */;font-size:15px;color:white;text-shadow:2px black;">댓글 리스트(<span class="replycntClass">${board.replyCnt}</span>)</span>
 				</li>
 			</ul>
-			<ul class="pagination"></ul>
+			<ul class="pagination" style="height:100px;"></ul>
 		</div>
 	</div> <!-- 댓글 -->
 
@@ -168,7 +172,7 @@
 	<script id="temp2" type="text/x-handlevars-template">
 		{{#list}}
 			<li class="replyLi" data-rno={{rno}} style="margin:0 auto;">				
-				<div class="timeline-item" style="width: 700px;border-top:1px solid black;clear:both;list-style:none;">
+				<div class="timeline-item" style="width: 90%;border-top:1px solid black;clear:both;list-style:none;">
 					<span class="time"><p class="timeline-header"><i class="fa fa-comments bg-blue"></i>
 					<strong>글번호:{{rno}}</strong> |<span class="r_writer">글쓴이:{{id}}</span></p>
 					<p style="float:right;"><i class="fa fa-clock-o" style="text-align:right;">{{tempdate rregDate}}&nbsp;&nbsp;</i>&nbsp;
@@ -179,23 +183,17 @@
 			{{#ifadmin id}}
 				<a class="btn btn-primary btn-xs btn_r_delete" data-toggle="modal" data-rno={{rno}}>삭제</a>
 			{{else}}
-			{{/ifadmin}}		
-		
-			
-						
-				
+			{{/ifadmin}}						
 				</p>
-					</span>
-				
+					</span>				
 					댓글내용:
-					<div class="timeline-body" style="width:700px;height:100px;border:3px solid blue;word-wrap:break-word;">{{replyText}}</div>
+					<div class="timeline-body" style="width:100%;height:80px;border:3px solid blue;word-wrap:break-word;">{{replyText}}</div>
 					<div style="float:right;">
 					</div>			
 				</div>
 			</li>
 		{{/list}}
 	</script>
-
 	<script type="text/javascript">
 	var curPage = 1;
 		Handlebars.registerHelper("tempdate", function(time) {
@@ -204,10 +202,8 @@
 			var month = dateObj.getMonth()+1;
 			var date = dateObj.getDate();
 			
-			return year + "/" + month + "/" + date;
-			
-		});
-		
+			return year + "/" + month + "/" + date;			
+		});		
 		var bno = ${board.bno };
 		function getAllList() {
 			$.ajax({

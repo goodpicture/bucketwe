@@ -50,4 +50,10 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectAll");
 	}
+
+	@Override
+	public UserVO allUser(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".allUser", id);
+	}
 }

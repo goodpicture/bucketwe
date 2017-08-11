@@ -10,4 +10,5 @@ public interface UserDAO {
 	public UserVO login(String id, String pw) throws Exception;
 	public void updateUser(UserVO vo) throws Exception;
 	public List<UserVO> selectAll() throws Exception;
+	public UserVO allUser(String id) throws Exception;
 }

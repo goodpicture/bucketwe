@@ -7,8 +7,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+<title>register</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
 window.onload = function(){
@@ -54,39 +55,49 @@ if(reg5.test(this.endDate.value)==false){
 </script>
 <style>
 #f1{
-
+width: 80%;
+margin:0 auto;
+border:1px solid black;
 }	
 label{
-width: 200px;
+width:40%;
 color: #CC0000;
 font-size: 20px;
 margin-left: 50px;
 }
 .regForm{
-width: 300px;
+width: 80%;
 height: 30px;
+margin-left:10%;
 }
 #insertTextarea{
-margin-left: 250px;
+margin-left: 10%;
 }
 #imgf{
-margin-left: 250px;
+margin-left: 10%;
 }
 .regBtn{
 width: 100px;
 height: 35px;
 font-size: 15px;
 }
+.register_board_class{
+width: 100%;
+margin:0 auto;
+margin-bottom: 10%;
+padding-bottom: 5%;
+}
 </style>
 <body>
-	<h1>REGISTER BOARD</h1><br>
+<div class="register_board_class">
+	<h3 style="margin-top:80px;text-align:center;">REGISTER BOARD</h3><br>
 	<form role="form" method="post" action="register" name="f1" id="f1" enctype="multipart/form-data">
 		<label>제목 :</label>
 		<input type="text" name="title" class="regForm"><br><br>
 		<label>주제 :</label>
 		<input type="text" name="category" class="regForm"><br><br>
 		<label>세부 내용 :</label><br>
-		<textarea rows="15" cols="70" name="content" id="insertTextarea"></textarea><br><br>
+		<textarea style="width:80%;height:100px;" name="content" id="insertTextarea"></textarea><br><br>
 		<label>시작날짜 :</label>
 		<input type="date" name="startDate" class="regForm"><br><br>
 		<label>종료날짜 :</label>
@@ -94,9 +105,10 @@ font-size: 15px;
 		<label>이미지 :</label>
 		<input type="file" name="imgFiles" id="imgf" multiple="multiple" class="regForm">
 		<input type="hidden" name="id" value="${login }"><br><br>
-		<input type="submit" value="저장" class="regBtn" style="background-color:orange;color:white;border-radius: 10px;">
-		<input type="reset" value="취소" onclick="history.back()" class="regBtn" style="background-color: blue;color: white;border-radius: 10px;">
+		<input type="submit" value="저장" class="regBtn" style="background-color:orange;margin-left:10%; color:white;border-radius:10px;">
+		<input type="reset" value="취소" onclick="history.back()" class="regBtn" style="background-color: blue;color: white;border-radius:10px;">
 	</form>
+</div>	
 <%@ include file="../include/footer.jsp" %>	
 </body>
 </html>

@@ -78,20 +78,35 @@ input::-webkit-input-placeholder {
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-
+<%-- 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script> --%>
+				<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->	
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 		<title>회원가입</title>
 	</head>
+	<script>
+					$(function(){	
+						$("#modifyUser").click(function(){						
+						if($("#newpassword").val() == $("#confirm").val()){
+							return true;
+						}else{
+							alert("새로운 비밀번호가 다릅니다");
+							return false;
+						}
+					})
+				})
+				</script>
 	<body>
 		<div class="container">
 			<div class="row main">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
-	               		<h1 class="title" style=font-family:"돋움;">회원가입</h1>
+	               		<h1 class="title" style=font-family:"돋움;">정보수정</h1>
 	               		<hr />
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="registerUser">
+					<form class="form-horizontal" method="post" action="userProfile" name="f1">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">이름</label>
@@ -136,7 +151,7 @@ input::-webkit-input-placeholder {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pw" id="password"  placeholder="Enter your Password" required autofocus/>
+									<input type="password" class="form-control" name="newpw" id="newpassword"  placeholder="Enter your Password" required autofocus/>
 								</div>
 							</div>
 						</div>
@@ -146,7 +161,7 @@ input::-webkit-input-placeholder {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pw" id="confirm"  placeholder="Confirm your Password" required autofocus/>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" required autofocus/>
 								</div>
 							</div>
 						</div>
@@ -161,7 +176,7 @@ input::-webkit-input-placeholder {
 				         </div> -->
 					</form>
 				</div>
-				<script>
+				<!-- <script>
 					$(function(){
 						$("#password").keyup(function(){
 							$("font[name=check]").text("");
@@ -176,10 +191,16 @@ input::-webkit-input-placeholder {
 								$("font[name=check]").html("암호일치");
 							}
 						})
+						$(function() {
+			$("#modifyUser").click(function() {
+				$("#f1").attr("action", "modifyUser");
+				$("#f1").attr("method", "get");
+				$("#f1").submit();
+			})
+		})
 					})
-				</script>
+				</script> -->
 			</div>
 		</div>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.js"></script>
 	</body>
 </html>

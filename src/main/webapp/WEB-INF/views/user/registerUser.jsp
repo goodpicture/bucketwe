@@ -79,7 +79,7 @@ input::-webkit-input-placeholder {
 </style>
     <head> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 
 <%-- 		<!-- Website CSS style -->
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/main.css"> --%>
@@ -90,7 +90,7 @@ input::-webkit-input-placeholder {
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 <%-- <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <script>
 					$(function(){
@@ -163,7 +163,7 @@ if(reg5.test(this.confirm.value)==false){
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" />
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -173,7 +173,7 @@ if(reg5.test(this.confirm.value)==false){
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" />
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -183,7 +183,9 @@ if(reg5.test(this.confirm.value)==false){
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="id" id="username"  placeholder="Enter your Id" />
+									<input type="text" class="form-control" name="id" id="id" placeholder="Enter your Id" required="required"/>									
+									<div><button type="button" id="checkBtn" class="btn btn-default">중복확인</button><span id="checkMsg"></span></div>
+									
 								</div>
 							</div>
 						</div>
@@ -193,7 +195,7 @@ if(reg5.test(this.confirm.value)==false){
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pw" id="password"  placeholder="Enter your Password" />
+									<input type="password" class="form-control" name="pw" id="password"  placeholder="Enter your Password" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -203,7 +205,7 @@ if(reg5.test(this.confirm.value)==false){
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" />
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" required="required"/>
 								</div>
 							</div>
 						</div>
@@ -211,7 +213,7 @@ if(reg5.test(this.confirm.value)==false){
 							<button type="submit" class="btn btn-primary btn-lg btn-block login-button" id="regiUser">Register</button>
 						</div>
 						<div class="login-register">
-				            <a href="login">Login</a>
+				            <a href="login" class="btn btn-primary btn-lg btn-block login-button" style="width:100%;">Login</a>
 				         </div>
 					</form>
 				</div>
@@ -241,7 +243,34 @@ if(reg5.test(this.confirm.value)==false){
 					}) */
 				</script>
 			</div>
-		</div>	
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.js"></script>
+		</div>
+		<script>
+ 	$(function(){		
+		$("#checkBtn").on("click", function(){
+			var id = $("input[name='id']").val();
+			var isVaildID;
+			$.ajax({				
+				url:'${pageContext.request.contextPath}/user/allUser/'+id,
+				type:'post',
+				dataType: "text",
+				data:JSON.stringify({id:id}),
+				headers : {"Content-Type" : "application/json"},
+				success:function(data){	
+					console.log(data);
+					if(data == "success"){
+						isVaildID = true;
+						$("#checkMsg").html('<p style="color:green;font-size:12px;">사용가능</p>');
+					}else{
+						isVaildID = false;
+						$("#checkMsg").html('<p style="color:red;font-size:12px;">사용불가</p>');
+					}
+				}	
+			})
+		})		
+	})
+		</script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 	</body>
 </html>

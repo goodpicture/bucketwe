@@ -1,153 +1,125 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true" %>
 <%@ include file="../include/header.jsp" %>
 <style>
-#page-header_h1{
-margin-top: 50px;
+table{	
+font-size: 20px;
+margin: 0px auto;
+}
+.th1{
+text-align: center;
+}
+.content{
+width: 85%;
+margin:0 auto;
+}
+.title_a{
+color: black;
+}
+.title_a:hover{
+background-color: rgba(0,0,0,.6);
+color: white;
+text-decoration: none;
 }
 </style>
-<!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- Page Content -->
-<div class="container">
-	<!-- Page Header -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<section class="content">
+<h3 style="text-align:center;">BucketWe List</h3>
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header" id="page-header_h1">
-				Page Heading <small>Secondary Text</small>
-			</h1>
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title"></h3><br>
+				</div>
+				<!-- BOX-header  -->
+				<div class="box-body" id="searchDiv">
+					<select name="searchType">
+						<option value="n" ${cri.searchType=='n'? 'selected':'' }>---</option>
+						<option value="t" ${cri.searchType=='t'? 'selected':'' }>버킷리스트</option>
+						<option value="c" ${cri.searchType=='c'? 'selected':'' }>주제</option>
+					</select>
+					
+					<input type="text" name="keyword" value="${cri.keyword}">
+					<button id="searchBtn">Search</button><br><br>
+				</div>
+				<div class="table-responsive"><!--  class="box-body" -->
+					<table class="table table-bordered text-center" >
+						<tr>
+							<th class="th1" style="width:80px;">번호</th>
+							<th class="th1">주제</th>
+							<th class="th1">버킷리스트[댓글]</th>
+							<th class="th1">등록시간</th>
+							<th class="th1">조회수</th>
+							<th class="th1">작성자</th>
+						</tr>
+
+						<c:forEach var="board" items="${list }">
+							<tr>
+								<td>${board.bno }</td>
+								<td>${board.category }</td>
+								<td>
+								<a href="read${pageMaker.makeSearch(cri.page) }&bno=${board.bno }&fromlist=true" style=" font-weight:bold;" title="상세보기" class="title_a">${board.title }</a>[${board.replyCnt }]</td>														
+								<td><fmt:formatDate value="${board.bregDate }" pattern="yyyy-MM-dd HH:mm" /></td>
+								<td>${board.bcnt }</td>
+								<td>${board.id }</td>
+							</tr>
+
+						</c:forEach>
+					</table>					
+				</div>
+				<button class="btn btn-primary" onclick="btnNew()" id="writeBtn">write</button>
+				<div class="box-footer" style="margin-bottom: 50px;">
+					<div class="text-center">
+						<ul class="pagination">
+				<c:if test="${pageMaker.prev}">
+								<!-- 이전 페이지 있을때만 표시 -->
+								<li><a href="listPage${pageMaker.makeSearch(pageMaker.startPage-1) }">&laquo;</a></li>
+							</c:if>
+							
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li ${pageMaker.cri.page == idx? 'class=active' : '' } >
+									<a href="listPage${pageMaker.makeSearch(idx) }">${idx }</a>
+								</li>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next}">
+								<!-- 이후 페이지 있을때만 표시 -->
+								<li><a href="listPage${pageMaker.makeSearch(pageMaker.endPage+1) }">&raquo;</a></li>
+							</c:if>
+
+						</ul>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
-	<!-- /.row -->
+</section>
+</body>
+<script>
+$(function() {
+	var result= '${msg}';
+	if(result=='SUCCESS'){
+		alert("처리가 완료되었습니다.");
+	}
+	
+	$("#searchBtn").click(function() {
+		var keyword=$("input[name='keyword']").val();
+		/* var searchType=$("select[name='searchType']").val(); */
+		var searchType=$("select").val();
+		location.href="listPage?searchType="+searchType+"&keyword="+keyword;
+	})
+})	
 
-	<!-- Projects Row -->
-	<div class="row">
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-	</div>
-	<!-- /.row -->
-
-	<!-- Projects Row -->
-	<div class="row">
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-	</div>
-
-	<!-- Projects Row -->
-	<div class="row">
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-		<div class="col-md-4 portfolio-item">
-			<a href="#"> <img class="img-responsive"
-				src="http://placehold.it/700x400" alt="">
-			</a>
-			<h3>
-				<a href="#">Project Name</a>
-			</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-				viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-		</div>
-	</div>
-	<!-- /.row -->
-
-	<hr>
-
-	<!-- Pagination -->
-	<div class="row text-center">
-		<div class="col-lg-12">
-			<ul class="pagination">
-				<li><a href="#">&laquo;</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-		</div>
-	</div>
-	<!-- /.row -->
-
-	<hr>
-
-</div>
+	function btnNew() {
+		location.href = "register";
+	}
+</script>
 <%@ include file="../include/footer.jsp" %>
-<!-- /.container -->

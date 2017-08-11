@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dgit.domain.BoardVO;
@@ -35,7 +34,6 @@ import com.dgit.domain.SearchCriteria;
 import com.dgit.service.BoardService;
 import com.dgit.util.MediaUtils;
 import com.dgit.util.UploadFileUtils;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Controller
 @RequestMapping("/board/*")
@@ -112,21 +110,22 @@ public class BoardController {
 	}*/
 	
 	@RequestMapping(value="delete", method=RequestMethod.POST)
-	public String delete(int bno,@ModelAttribute("cri") SearchCriteria cri, RedirectAttributes rttr, String[] delFile) throws Exception{
+	public String delete(int bno,@ModelAttribute("cri") SearchCriteria cri, RedirectAttributes rttr, String[] delfile) throws Exception{
 		service.remove(bno);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		
 		//폴더 삭제
-		if(delFile != null){
-			for(int i=0;i<delFile.length;i++){
+		if(delfile != null){
+			System.out.println("****************************"+delfile);
+			for(int i=0;i<delfile.length;i++){
 				//thumbnail 삭제
-			File file = new File(uploadPath + delFile[i]); // '/'까지 넘어온다.
+			File file = new File(uploadPath + delfile[i]); // '/'까지 넘어온다.
 			file.delete();
 			//원본 이미지 삭제
-			String front = delFile[i].substring(0, 12); // 0~11
-			String end = delFile[i].substring(14);
+			String front = delfile[i].substring(0, 12); // 0~11
+			String end = delfile[i].substring(14);
 			String originalName = front+end;
 			File file2 = new File(uploadPath+originalName);
 			file2.delete();
@@ -165,6 +164,7 @@ public class BoardController {
 		rttr.addAttribute("bno", vo.getBno());
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("replyCnt", vo.getReplyCnt());
 		
 		//service.modify(vo);		
 				service.modifyUpload(vo, delfile); //이미지 수정까지 포함한 uploadModify, DB삭제

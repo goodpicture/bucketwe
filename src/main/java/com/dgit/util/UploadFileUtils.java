@@ -51,14 +51,18 @@ public class UploadFileUtils {
 	private static String makeThumbnail(String uploadPath, String datePath, String filename) throws IOException{ //s_uuid 이렇게 만들려고 매개변수 따로 받음.
 		String originalFilename = uploadPath+"/"+datePath+"/"+filename;
 		BufferedImage sourceImg = ImageIO.read(new File(originalFilename)); //원본 이미지에서 데이터 뽑아오기
-
-		BufferedImage destImg = null;
+		
+		int dw = 600, dh = 700;
+		BufferedImage destImg = Scalr.resize(sourceImg, dw, dh);
 		//썸네일 이미지 높이 500px를 기준으로 자동 조정하여 이미지를 줄여준다.
-		if(sourceImg.getHeight() >= sourceImg.getWidth()){
-			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 500);		
+		
+		/*if(sourceImg.getHeight() >= sourceImg.getWidth()){
+			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 400);
+			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 600);
 		}else{
-			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 700);
-		}
+			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 400);
+			destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 600);
+		}*/
 		
 		String thumbFilename = uploadPath+"/"+datePath+"/s_"+filename;
 		File newFile = new File(thumbFilename);
