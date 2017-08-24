@@ -209,12 +209,11 @@ if(reg5.test(this.confirm.value)==false){
 								</div>
 							</div>
 						</div>
-						<div class="form-group ">
-							<button type="submit" class="btn btn-primary btn-lg btn-block login-button" id="regiUser">Register</button>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-lg btn-block login-button" id="regiUser">Register</button>
+							<a href="login" class="btn btn-primary btn-lg btn-block login-button">Login</a>
 						</div>
-						<div class="login-register">
-				            <a href="login" class="btn btn-primary btn-lg btn-block login-button" style="width:100%;">Login</a>
-				         </div>
+
 					</form>
 				</div>
 				<script>

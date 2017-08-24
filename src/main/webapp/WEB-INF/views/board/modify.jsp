@@ -93,7 +93,7 @@
 
 						var item = $(this).attr("data-src");
 						var inputObj = $("<input type='hidden' name ='delfile' value='"+item+"'>");
-						alert(item);
+						/* alert(item); */
 						$("#removeFile").append(inputObj);
 						$(this).parent().hide();
 					});

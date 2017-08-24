@@ -120,8 +120,8 @@ $(function() {
         </div> -->
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
        <br>
-        <a href="#">I forgot my password</a><br>
-        <a href="registerUser" class="text-center">Register a new membership</a>
+        <!-- <a href="#">I forgot my password</a><br> -->
+        <a href="registerUser" class="text-center"><!-- Register a new membership -->회원가입</a>
         <br>
       </form>
 <!--       <div class="col-md-6">

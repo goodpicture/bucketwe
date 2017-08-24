@@ -88,7 +88,7 @@ margin:0 auto;
 			$("#deleteBtn").click(function() {
 				$("#f1").attr("action", "delete");
 				$("#f1").submit();
-				alert("${board.bno}번 글을 삭제 합니다");
+				/* alert("${board.bno}번 글을 삭제 합니다"); */
 			})
 			$("#modifyBtn").click(function() {
 				$("#f1").attr("action", "modify");
@@ -297,7 +297,7 @@ margin:0 auto;
 				headers :{"Content-Type":"application/json"},				
 				success: function(data) {
 					console.log(data);					
-					alert("test");
+					/* alert("test"); */
 					getPageList(curPage);
 				}
 			})
@@ -331,7 +331,7 @@ margin:0 auto;
 						console.log(rno + "수정하기 " +data);
 						if(data =="SUCCESS"){
 							// 수정이 누적됩니다??? 왜죠????
-							alert(rno+"번 댓글 수정완료");
+						//	alert(rno+"번 댓글 수정완료");
 							//getAllList();
 							getPageList(curPage);
 						}
@@ -353,7 +353,7 @@ margin:0 auto;
 					success: function(data) {
 						console.log(rno + "삭제하기 " +data);
 						if(data =="SUCCESS"){
-							alert(rno+"번 댓글 삭제완료");
+					//		alert(rno+"번 댓글 삭제완료");
 							//getAllList();
 							getPageList(curPage);
 						}

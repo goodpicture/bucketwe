@@ -24,6 +24,9 @@ width: 70px;
 .th1{
 text-align: center;
 }
+tr:NTH-CHILD(2), tr:NTH-CHILD(3), tr:NTH-CHILD(4){
+background-color: rgba(189, 189,189, 0.2);
+} 
 </style>
 </head>
 <body>
